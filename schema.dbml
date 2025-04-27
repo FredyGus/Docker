@@ -1,0 +1,36 @@
+Table Platforms {
+  id int [pk, increment]
+  name varchar(30) [not null, unique]
+}
+
+Table Genres {
+  id int [pk, increment]
+  name varchar(30) [not null, unique]
+}
+
+Table Moods {
+  id int [pk, increment]
+  name varchar(30) [not null, unique]
+}
+
+Table Games {
+  id int [pk, increment]
+  title varchar(100) [not null]
+  platform_id int [not null, ref: > Platforms.id]
+  genre_id    int [not null, ref: > Genres.id]
+  mood_id     int [not null, ref: > Moods.id]
+  release_date date
+}
+
+Table Trivia {
+  id int [pk, increment]
+  game_id int [not null, ref: > Games.id]
+  trivia_text text [not null]
+}
+
+Table Scores {
+  id int [pk, increment]
+  game_id int [not null, ref: > Games.id]
+  source varchar(30)
+  value decimal(5,2)
+}
